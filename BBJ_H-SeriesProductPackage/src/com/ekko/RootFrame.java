@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 public class RootFrame {
 
     //设置框架
-    JFrame frame = new JFrame("123");
+    JFrame frame = new JFrame("BBJ H-Product Package_V1.0");
     //结果面板
     ResultPanel resultPanel = new ResultPanel("false",0,0,
             0, 0, 0,0,0,0,null);
@@ -49,7 +49,7 @@ public class RootFrame {
         });
 
         //向选择框内添加Tab
-        tabbedPane.addTab("device",deivcesPanel.rootPanel);
+        tabbedPane.addTab("DEVICES",deivcesPanel.rootPanel);
 
         deivcesPanel.resultButton.addActionListener(new ButtonActionListener());
 
@@ -137,7 +137,7 @@ public class RootFrame {
                             //删除之前的结果
                             RootFrame.this.tabbedPane.remove(tabbedPane.getTabCount() - 1);
                             //给ResultPanel赋值
-                            RootFrame.this.tabbedPane.addTab("结果", new ResultPanel(
+                            RootFrame.this.tabbedPane.addTab("RESULT", new ResultPanel(
                                     packageType,
                                     deivcesPanel.getTotalRatedPower(),
                                     deivcesPanel.getTotalDayPower(),
@@ -154,7 +154,7 @@ public class RootFrame {
                             JOptionPane.showMessageDialog(null, "Product package results have been updated", "SUCCESS", JOptionPane.CLOSED_OPTION);
                         }else{
                             //给ResultPanel赋值
-                            RootFrame.this.tabbedPane.addTab("结果", new ResultPanel(
+                            RootFrame.this.tabbedPane.addTab("RESULT", new ResultPanel(
                                     packageType,
                                     deivcesPanel.getTotalRatedPower(),
                                     deivcesPanel.getTotalDayPower(),
