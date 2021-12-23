@@ -20,7 +20,7 @@ public class RootFrame {
     DevicePanel deivcesPanel = new DevicePanel();
 
     //定义数组
-    String[][] deviceArr = new String[deivcesPanel.numb + 1][6];
+    String[][] deviceArr = new String[deivcesPanel.numb + 1][7];
 
     public RootFrame(){
 
@@ -72,6 +72,7 @@ public class RootFrame {
         frame.setSize(920,730);
 
         //显示窗体
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setResizable(false);
     }
@@ -89,6 +90,20 @@ public class RootFrame {
                 deviceArr[0][3] = "Quantity";
                 deviceArr[0][4] = "Dayting Time";
                 deviceArr[0][5] = "Night Time";
+
+                //附加标题
+                deviceArr[0][6] = "NEPA DayTime";
+                deviceArr[1][6] = deivcesPanel.textDayNEPA.getText();
+                deviceArr[2][6] = "NEPA NightTime";
+                deviceArr[3][6] = deivcesPanel.textNightNEPA.getText();
+                deviceArr[4][6] = "Generator Powere";
+                deviceArr[5][6] = deivcesPanel.textGen.getText();
+                deviceArr[6][6] = "Roof Area";
+                deviceArr[7][6] = deivcesPanel.textRoofArea.getText();
+                deviceArr[8][6] = "House Orientation";
+                deviceArr[9][6] = String.valueOf(deivcesPanel.comOrientation.getSelectedItem());
+
+
                 //赋值deviceArr
                 for(int i = 1; i < deivcesPanel.numb + 1; i++){
                     if(deivcesPanel.devicesCom[i - 1].getSelectedIndex() > -1) {

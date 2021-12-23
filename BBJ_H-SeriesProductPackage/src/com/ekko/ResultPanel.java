@@ -26,9 +26,11 @@ public class ResultPanel extends JPanel{
     //luxury套餐
     JButton luxuryButton = new JButton();
 
+    //结果二维数组
+    String[][] resultArr = new String[7][2];
 
-    public ResultPanel(String packageType,int totalRetedPower,int totalDayPower,int totalNightPower,
-                       int NEPADayTime,int NEPANightTime,int genPower,int panleNumb,double solarFactor,String[][] deviceArr) {
+    public ResultPanel(String packageType, int totalRetedPower, int totalDayPower, int totalNightPower,
+                       int NEPADayTime, int NEPANightTime, int genPower, int panleNumb, double solarFactor, String[][] deviceArr) {
         super();
 
         rootPanel.add(basicButton);
@@ -59,6 +61,7 @@ public class ResultPanel extends JPanel{
         //Base套餐的显示
         String baseResultStr =
                 "<html><body>" +
+                        "<div style=\"font-size:13px;\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + "BASIC PACKAGE" + "&nbsp;&nbsp;</div><br>" +
                         "<div style=\"font-size:15px;color:#000000\">-----------&nbsp;&nbsp;" + packageType + "&nbsp;&nbsp;-----------</div><br><br>" +
 
                         "<div style=\"width:50px;height:25px;border:1px solid black;\">" +
@@ -81,6 +84,7 @@ public class ResultPanel extends JPanel{
         //advanced套餐的显示
         String advancedResultStr =
                 "<html><body>" +
+                        "<div style=\"font-size:13px;\">&nbsp;&nbsp;&nbsp;" + "ADVANCED PACKAGE" + "&nbsp;&nbsp;</div><br>" +
                         "<div style=\"font-size:15px;color:#000000\">-----------&nbsp;&nbsp;" + packageType + "&nbsp;&nbsp;-----------</div><br><br>" +
 
                         "<div style=\"width:50px;height:25px;border:1px solid black;\">" +
@@ -115,6 +119,7 @@ public class ResultPanel extends JPanel{
         //luxury套餐的显示
         String luxuryResultStr =
                 "<html><body>" +
+                        "<div style=\"font-size:13px;\">&nbsp;&nbsp;" + "LUXURIOUS PACKAGE" + "&nbsp;&nbsp;</div><br>" +
                         "<div style=\"font-size:15px;color:#000000\">-----------&nbsp;&nbsp;" + packageType + "&nbsp;&nbsp;-----------</div><br><br>" +
 
                         "<div style=\"width:50px;height:25px;border:1px solid black;\">" +
@@ -163,14 +168,82 @@ public class ResultPanel extends JPanel{
         basicButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //标题赋值
+                String[] productName = {"packageTypeName","Inverter","Battery_3KWH"
+                ,"Battery_5KWH","SolarPanel","AdditionalBattery","AdditionalSolarPanel"};
+                for(int i = 0;i < 7;i++){
+                    resultArr[i][0] = productName[i];
+                }
+
+                //结果数据赋值
+                resultArr[0][1] = packageType;
+                resultArr[1][1] = String.valueOf(mianProduct.getInverter());
+                resultArr[2][1] = String.valueOf(mianProduct.getBattery_3KWH());
+                resultArr[3][1] = String.valueOf(mianProduct.getBattery_5KWH());
+                resultArr[4][1] = String.valueOf(mianProduct.getSolarPanel());
+                resultArr[5][1] = "0";
+                resultArr[6][1] = "0";
+
                 try {
-                    new ExcelExport().ExcelWrite(deviceArr);
+                    new ExcelExport().ExcelWrite(deviceArr,resultArr);
                 } catch (Exception exception) {
                     exception.printStackTrace();
                 }
             }
         });
-    }
+        advancedButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //标题赋值
+                String[] productName = {"packageTypeName","Inverter","Battery_3KWH"
+                        ,"Battery_5KWH","SolarPanel","AdditionalBattery","AdditionalSolarPanel"};
+                for(int i = 0;i < 7;i++){
+                    resultArr[i][0] = productName[i];
+                }
 
+                //结果数据赋值
+                resultArr[0][1] = packageType;
+                resultArr[1][1] = String.valueOf(mianProduct.getInverter());
+                resultArr[2][1] = String.valueOf(mianProduct.getBattery_3KWH());
+                resultArr[3][1] = String.valueOf(mianProduct.getBattery_5KWH());
+                resultArr[4][1] = String.valueOf(mianProduct.getSolarPanel());
+                resultArr[5][1] = String.valueOf(addAdvancBattery);
+                resultArr[6][1] = String.valueOf(addAdvancPanle);
+
+                try {
+                    new ExcelExport().ExcelWrite(deviceArr,resultArr);
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
+            }
+        });
+        luxuryButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //标题赋值
+                String[] productName = {"packageTypeName","Inverter","Battery_3KWH"
+                        ,"Battery_5KWH","SolarPanel","AdditionalBattery","AdditionalSolarPanel"};
+                for(int i = 0;i < 7;i++){
+                    resultArr[i][0] = productName[i];
+                }
+
+                //结果数据赋值
+                resultArr[0][1] = packageType;
+                resultArr[1][1] = String.valueOf(mianProduct.getInverter());
+                resultArr[2][1] = String.valueOf(mianProduct.getBattery_3KWH());
+                resultArr[3][1] = String.valueOf(mianProduct.getBattery_5KWH());
+                resultArr[4][1] = String.valueOf(mianProduct.getSolarPanel());
+                resultArr[5][1] = String.valueOf(luxuryBattry);
+                resultArr[6][1] = String.valueOf(luxuryPanel);
+
+                try {
+                    new ExcelExport().ExcelWrite(deviceArr,resultArr);
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
+            }
+        });
+
+    }
 
 }
